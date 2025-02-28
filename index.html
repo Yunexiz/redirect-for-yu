@@ -3,73 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>yunexiz.is-a.dev</title>
+    <title>Redirecting...</title>
 
     <style>
         body {
-            background-image: url("./back-ground.png");
+            background-image: url('https://yunexiz.is-a.dev/back-ground.png');
             background-size: cover;
-            font-family: 'Arial', sans-serif;
-            background-color: #05021c;
+            background-color: rgb(24, 24, 24);
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             height: 100vh;
             margin: 0;
         }
 
-        button {
-            color: #ffffff;
-            background-color: rgba(0, 0, 0, 0.5);
-            border: none;
-            padding: 8px 16px;
-            margin: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            position: absolute;
-            top: 65%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .loader {
+            position: relative;
+            width: 150px;
+            height: 150px;
         }
 
-        h1 {
-            font-family: Arial, sans-serif;
-        }
-        
-        p {
-            font-family: Arial, sans-serif;
-        }
-
-        .title-container {
-            margin-bottom: 20px;
-            color: #ffffff;
-            background-color: rgba(0, 0, 0, 0.5);
-            border: none;
-            padding: 30px;
-            margin: 10px;
-            border-radius: 12px;
-            display: inline-block;
+        .center-circle {
             position: absolute;
-            top: 50%;
+            top: -10%;
             left: 50%;
             transform: translate(-50%, -50%);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 30px;
+            height: 30px;
+            background-color: #3498db;
+            border-radius: 50%;
+            z-index: 2;
+            animation: grow 3s ease-in-out forwards;
         }
+
+        .orbit-circle {
+            position: absolute;
+            top: -10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            background-color: white;
+            border-radius: 50%;
+            z-index: 3;
+            animation: orbit 1s ease-in-out infinite;
+        }
+
+        .orbit-circle.opposite {
+            z-index: 3;
+            animation: orbit-opposite 1s ease-in-out infinite;
+        }
+
+        .orbit-path {
+            position: absolute;
+            top: -10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+        }
+
+        @keyframes orbit {
+            0% {
+                transform: translate(-50%, -50%) rotate(-90deg) translateX(60px);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(270deg) translateX(60px);
+            }
+        }
+
+        @keyframes orbit-opposite {
+            0% {
+                transform: translate(-50%, -50%) rotate(90deg) translateX(60px);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(450deg) translateX(60px);
+            }
+        }
+
+        @keyframes grow {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            25% {
+                transform: translate(-50%, -50%) scale(3);
+            }
+            75% {
+                transform: translate(-50%, -50%) scale(0);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(4);
+            }
+        }
+
     </style>
 </head>
 <body>
-        <div id="title-container" class="title-container hidden">
-            <h1>Redirecting...</h1>
-            <p>Didn't get redirected?</p>
-        </div>
-        <form id="redirect-form" method="get" action="https://yunexiz.is-a.dev" class="hidden">
-            <button type="submit">Click here</button>
-        </form>
-        <script>
-            // Automatically submit the form after a delay (e.g., 1 second)
-            setTimeout(function() {
-                document.getElementById('redirect-form').submit();
-            }, 1000);
-        </script>
+    <div class="loader">
+        <div class="center-circle"></div>
+        <div class="orbit-circle"></div>
+        <div class="orbit-circle opposite"></div>
+        <div class="orbit-path"></div>
+    </div>
+    <script>
+        setTimeout(function() {
+            window.location.href = "https://yunexiz.is-a.dev";
+        }, 3000);
+    </script>
 </body>
 </html>
