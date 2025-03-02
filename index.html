@@ -31,8 +31,9 @@
             height: 30px;
             background-color: #002D5C;
             border-radius: 50%;
+            border: 2px solid while;
             z-index: 2;
-            animation: grow 3s ease-in-out forwards;
+            animation: supernova 3s ease-in-out forwards;
         }
 
         .orbit-circle {
@@ -82,7 +83,7 @@
             }
         }
 
-        @keyframes grow {
+        @keyframes supernova {
             0% {
                 transform: translate(-50%, -50%) scale(1);
             }
@@ -91,9 +92,11 @@
             }
             75% {
                 transform: translate(-50%, -50%) scale(0);
+                border: 1px solid white;
             }
             100% {
                 transform: translate(-50%, -50%) scale(4);
+                border: 0px solid white;
             }
         }
 
