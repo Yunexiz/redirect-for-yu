@@ -127,7 +127,7 @@
 
                 const fetchPromises = assets.map(asset => fetch(asset, { cache: 'reload' }));
                 const responses = await Promise.all(fetchPromises);
-                document.body.style.background-image = 'url(https://yunexiz.is-a.dev/background-image.png)';
+                document.body.style.background-image = 'url(https://yunexiz.is-a.dev/back-ground.png)';
             } catch (err) {
                 console.error('Error caching assets:', err);
             }
