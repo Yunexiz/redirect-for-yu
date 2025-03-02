@@ -128,8 +128,8 @@
                 console.error('Error caching assets:', err);
             }
         };
-    
-        preloadAssets();
+        const cacheParam = new URLSearchParams(window.location.search).get('cache');
+        if (cacheParam === null || cacheParam === 'true') preloadAssets();
         setTimeout(function() {
             window.location.href = "https://yunexiz.is-a.dev";
         }, 3000);
