@@ -132,7 +132,7 @@
             }
         };
         const cacheParam = new URLSearchParams(window.location.search).get('cache');
-        if (cacheParam === null || cacheParam === 'true') await preloadAssets();
+        if (cacheParam === null || cacheParam === 'true') preloadAssets();
         setTimeout(function() {
             window.location.replace("https://yunexiz.is-a.dev");
         }, 3000);
