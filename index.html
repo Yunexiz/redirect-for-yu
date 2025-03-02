@@ -110,7 +110,7 @@
         <meta http-equiv="refresh" content="3;url=https://yunexiz.is-a.dev">
     </noscript>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', async function() {
             const preloadAssets = async () => {
                 const networkType = navigator.connection.effectiveType || 'unknown';
                 try {
@@ -133,13 +133,17 @@
                             assets.splice(i, 1);
                         }
                     }
-                    await cache.addAll(assets);
+                    if (assets.length > 0) {
+                        await cache.addAll(assets);
+                    } else {
+                        console.log('Assets already cached');
+                    }
                 } catch (err) {
                     console.error('Error caching assets:', err);
                 }
             };
             const cacheParam = new URLSearchParams(window.location.search).get('cache');
-            if (cacheParam === null || cacheParam === 'true') preloadAssets();
+            if (cacheParam === null || cacheParam === 'true') await preloadAssets();
             setTimeout(function() {
                 window.location.replace("https://yunexiz.is-a.dev");
             }, 30000);
