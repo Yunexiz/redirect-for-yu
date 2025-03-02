@@ -108,7 +108,7 @@
     </div>
     <script>
         const preloadAssets = async () => {
-            const networkType = navigator.connection.effectiveType;
+            const networkType = navigator.connection.effectiveType || 'unknown';
             try {
                 const cache = await caches.open('yunexiz-assets-v1'); 
                 const assets = [
