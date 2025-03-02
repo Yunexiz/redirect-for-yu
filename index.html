@@ -123,7 +123,10 @@
                     'https://yunexiz.is-a.dev/riot.png'
                 ]
 
-                if (networkType === '4g') assets.push('https://yunexiz.is-a.dev/back-ground.png);
+                if (networkType === '4g') {
+                    assets.push('https://yunexiz.is-a.dev/back-ground.png')
+                    console.log('Fast connection');
+                };
                 await cache.addAll(assets);
             } catch (err) {
                 console.error('Error caching assets:', err);
