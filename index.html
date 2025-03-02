@@ -110,44 +110,32 @@
         <meta http-equiv="refresh" content="3;url=https://yunexiz.is-a.dev">
     </noscript>
     <script>
-        document.addEventListener('DOMContentLoaded', async function() {
-            const preloadAssets = async () => {
-                const networkType = navigator.connection.effectiveType || 'unknown';
-                try {
-                    const cache = await caches.open('yunexiz-assets-v1'); 
-                    const assets = [
-                        'https://yunexiz.is-a.dev/pfp.png',
-                        'https://yunexiz.is-a.dev/twitter.png',
-                        'https://yunexiz.is-a.dev/discord.png',
-                        'https://yunexiz.is-a.dev/domains.jpg',
-                        'https://yunexiz.is-a.dev/github.png',
-                        'https://yunexiz.is-a.dev/gitlab.png',
-                        'https://yunexiz.is-a.dev/mal.png',
-                        'https://yunexiz.is-a.dev/reddit.png',
-                        'https://yunexiz.is-a.dev/riot.png'
-                    ]
-    
-                    if (networkType === '4g') assets.push('https://yunexiz.is-a.dev/back-ground.png');
-                    for (let i = assets.length - 1; i >= 0; i--) {
-                        if (await cache.match(assets[i])) {
-                            assets.splice(i, 1);
-                        }
-                    }
-                    if (assets.length > 0) {
-                        await cache.addAll(assets);
-                    } else {
-                        console.log('Assets already cached');
-                    }
-                } catch (err) {
-                    console.error('Error caching assets:', err);
-                }
-            };
-            const cacheParam = new URLSearchParams(window.location.search).get('cache');
-            if (cacheParam === null || cacheParam === 'true') await preloadAssets();
-            setTimeout(function() {
-                window.location.replace("https://yunexiz.is-a.dev");
-            }, 3000);
-        });
+        const preloadAssets = async () => {
+            try {
+                const assets = [
+                    'https://yunexiz.is-a.dev/pfp.png',
+                    'https://yunexiz.is-a.dev/twitter.png',
+                    'https://yunexiz.is-a.dev/discord.png',
+                    'https://yunexiz.is-a.dev/domains.jpg',
+                    'https://yunexiz.is-a.dev/github.png',
+                    'https://yunexiz.is-a.dev/gitlab.png',
+                    'https://yunexiz.is-a.dev/mal.png',
+                    'https://yunexiz.is-a.dev/reddit.png',
+                    'https://yunexiz.is-a.dev/riot.png',
+                    'https://yunexiz.is-a.dev/back-ground.png'
+                ]
+
+                const fetchPromises = assets.map(asset => fetch(asset, { cache: 'reload' }));
+                const responses = await Promise.all(fetchPromises);
+            } catch (err) {
+                console.error('Error caching assets:', err);
+            }
+        };
+        const cacheParam = new URLSearchParams(window.location.search).get('cache');
+        if (cacheParam === null || cacheParam === 'true') await preloadAssets();
+        setTimeout(function() {
+            window.location.replace("https://yunexiz.is-a.dev");
+        }, 3000);
     </script>
 </body>
 </html>
