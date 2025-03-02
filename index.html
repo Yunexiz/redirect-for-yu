@@ -108,6 +108,27 @@
         <div class="orbit-path"></div>
     </div>
     <script>
+        const preloadAssets = async () => {
+            try {
+                const cache = await caches.open('main-site-assets');
+                await cache.addAll([
+                    'https://yunexiz.is-a.dev/pfp.png',
+                    'https://yunexiz.is-a.dev/back-ground.png',
+                    'https://yunexiz.is-a.dev/twitter.png',
+                    'https://yunexiz.is-a.dev/discord.png',
+                    'https://yunexiz.is-a.dev/domains.jpg',
+                    'https://yunexiz.is-a.dev/github.png',
+                    'https://yunexiz.is-a.dev/gitlab.png',
+                    'https://yunexiz.is-a.dev/mal.png',
+                    'https://yunexiz.is-a.dev/reddit.png',
+                    'https://yunexiz.is-a.dev/riot.png'
+                ]);
+            } catch (err) {
+                console.error('Error caching assets:', err);
+            }
+        };
+    
+        preloadAssets();
         setTimeout(function() {
             window.location.href = "https://yunexiz.is-a.dev";
         }, 3000);
