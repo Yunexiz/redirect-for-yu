@@ -130,7 +130,7 @@
                 const fetchPromises = assets.map(asset => fetch(asset, { cache: 'reload' }));
                 const responses = await Promise.all(fetchPromises);
                 document.body.style.backgroundImage = "url('https://yunexiz.is-a.dev/back-ground.png')"; 
-                document.querySelector('center-circle')[0].style.background = 'radial-gradient(circle, darkblue, lightblue)';
+                document.querySelector('.center-circle')[0].style.background = 'radial-gradient(circle, darkblue, lightblue)';
             } catch (err) {
                 console.error('Error caching assets:', err);
             }
