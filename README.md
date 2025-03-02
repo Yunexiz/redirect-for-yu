@@ -1,1 +1,1 @@
-Redirect with a cool little orbital loading animation.
+Redirect and cache saver, with a cool little loading animation.
