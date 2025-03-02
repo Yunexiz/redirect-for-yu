@@ -106,6 +106,9 @@
         <div class="orbit-circle opposite"></div>
         <div class="orbit-path"></div>
     </div>
+    <noscript>
+        <meta http-equiv="refresh" content="3;url=https://yunexiz.is-a.dev">
+    </noscript>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const preloadAssets = async () => {
@@ -125,6 +128,11 @@
                     ]
     
                     if (networkType === '4g') assets.push('https://yunexiz.is-a.dev/back-ground.png');
+                    for (let i = assets.length - 1; i >= 0; i--) {
+                        if (await cache.match(assets[i])) {
+                            assets.splice(i, 1);
+                        }
+                    }
                     await cache.addAll(assets);
                 } catch (err) {
                     console.error('Error caching assets:', err);
@@ -133,7 +141,7 @@
             const cacheParam = new URLSearchParams(window.location.search).get('cache');
             if (cacheParam === null || cacheParam === 'true') preloadAssets();
             setTimeout(function() {
-                window.location.href = "https://yunexiz.is-a.dev";
+                window.location.replace("https://yunexiz.is-a.dev");
             }, 3000);
         });
     </script>
