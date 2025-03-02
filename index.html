@@ -108,11 +108,11 @@
     </div>
     <script>
         const preloadAssets = async () => {
+            const networkType = navigator.connection.effectiveType;
             try {
-                const cache = await caches.open('yunexiz-site-assets-v1');
-                await cache.addAll([
+                const cache = await caches.open('yunexiz-assets-v1'); 
+                const assets = [
                     'https://yunexiz.is-a.dev/pfp.png',
-                    'https://yunexiz.is-a.dev/back-ground.png',
                     'https://yunexiz.is-a.dev/twitter.png',
                     'https://yunexiz.is-a.dev/discord.png',
                     'https://yunexiz.is-a.dev/domains.jpg',
@@ -121,7 +121,10 @@
                     'https://yunexiz.is-a.dev/mal.png',
                     'https://yunexiz.is-a.dev/reddit.png',
                     'https://yunexiz.is-a.dev/riot.png'
-                ]);
+                ]
+
+                if (networkType === '4g') assets.push('https://yunexiz.is-a.dev/back-ground.png);
+                await cache.addAll(assets);
             } catch (err) {
                 console.error('Error caching assets:', err);
             }
