@@ -109,7 +109,6 @@
     <script>
         const preloadAssets = async () => {
             try {
-                await caches.delete('main-site-assets')
                 const cache = await caches.open('main-site-assets');
                 await cache.addAll([
                     'https://yunexiz.is-a.dev/pfp.png',
