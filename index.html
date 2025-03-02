@@ -31,9 +31,9 @@
             height: 30px;
             background-color: #002D5C;
             border-radius: 50%;
-            border: 2px solid while;
             z-index: 2;
-            animation: supernova 3s ease-in-out forwards;
+            box-shadow: 0 0 10px 3px rgba(0, 0, 175, 0.3);
+            animation: supernova 3s ease-in forwards;
         }
 
         .orbit-circle {
@@ -86,19 +86,15 @@
         @keyframes supernova {
             0% {
                 transform: translate(-50%, -50%) scale(1);
-                border: 3px solid white;
             }
             25% {
                 transform: translate(-50%, -50%) scale(3);
-                border: 3px solid white;
             }
             75% {
                 transform: translate(-50%, -50%) scale(0);
-                border: 1px solid white;
             }
             100% {
                 transform: translate(-50%, -50%) scale(4);
-                border: 0px solid white;
             }
         }
 
