@@ -114,7 +114,7 @@
         <div class="orbit-circle opposite"></div>
         <div class="orbit-path"></div>
     </div>
-    <h1>Just a moment...</h1>
+    <h1>One moment...</h1>
     <noscript>
         <meta http-equiv="refresh" content="3;url=https://yunexiz.is-a.dev">
     </noscript>
@@ -137,6 +137,7 @@
                 const fetchPromises = assets.map(asset => fetch(asset, { cache: 'reload' }));
                 const responses = await Promise.all(fetchPromises);
                 document.body.style.backgroundImage = "url('https://yunexiz.is-a.dev/back-ground.png')"; 
+                document.querySelector('h1').innerHTML = 'Almost there...';
             } catch (err) {
                 console.error('Error caching assets:', err);
             }
