@@ -104,7 +104,20 @@
             position: absolute;
             margin: 0 auto;
             top: 60%;
-            color: white;
+            background: linear-gradient(90deg, blue, lightgrey, blue);
+            background-size: 200% auto;
+            background-clip: text;
+            color: transparent;
+            animation: textAnimation 1s linear infinite;
+        }
+
+        @keyframes gradientMove {
+          0% {
+            background-position: 0% center;
+          }
+          100% {
+            background-position: -200% center;
+          }
         }
     </style>
 </head>
