@@ -129,36 +129,36 @@
     </div>
     <h1>One moment...</h1>
     <noscript>
-        <meta http-equiv="refresh" content="3;url=https://yunexiz.is-a.dev">
+        <meta http-equiv="refresh" content="3;url=https://yosuke.is-a.dev">
     </noscript>
     <script>
         const preloadAssets = async () => {
             try {
                 const assets = [
-                    'https://yunexiz.is-a.dev/pfp.png',
-                    'https://yunexiz.is-a.dev/twitter.png',
-                    'https://yunexiz.is-a.dev/discord.png',
-                    'https://yunexiz.is-a.dev/domains.jpg',
-                    'https://yunexiz.is-a.dev/github.png',
-                    'https://yunexiz.is-a.dev/gitlab.png',
-                    'https://yunexiz.is-a.dev/mal.png',
-                    'https://yunexiz.is-a.dev/reddit.png',
-                    'https://yunexiz.is-a.dev/riot.png',
-                    'https://yunexiz.is-a.dev/back-ground.png',
-                    'https://yunexiz.is-a.dev'
+                    'https://yosuke.is-a.dev/assets/pfp.webp',
+                    'https://yosuke.is-a.dev/assets/twitter.webp',
+                    'https://yosuke.is-a.dev/assets/discord.webp',
+                    'https://yosuke.is-a.dev/assets/domains.webp',
+                    'https://yosuke.is-a.dev/assets/github.webp',
+                    'https://yosuke.is-a.dev/assets/gitlab.webp',
+                    'https://yosuke.is-a.dev/assets/mal.webp',
+                    'https://yosuke.is-a.dev/assets/reddit.webp',
+                    'https://yosuke.is-a.dev/assets/riot.webp',
+                    'https://yosuke.is-a.dev/assets/back-ground.webp',
+                    'https://yosuke.is-a.dev'
                 ]
 
                 const fetchPromises = assets.map(asset => fetch(asset, { cache: 'reload' }));
                 const responses = await Promise.all(fetchPromises);
-                document.body.style.backgroundImage = "url('https://yunexiz.is-a.dev/back-ground.png')"; 
+                document.body.style.backgroundImage = "url('https://yosuke.is-a.dev/assets/back-ground.webp')"; 
             } catch (err) {
                 console.error('Error caching assets:', err);
             }
         };
         const cacheParam = new URLSearchParams(window.location.search).get('cache');
-        if (cacheParam === null || cacheParam === 'true') preloadAssets();
+        if (cacheParam === null || cacheParam !== 'false') preloadAssets();
         setTimeout(function() {
-            window.location.replace("https://yunexiz.is-a.dev");
+            window.location.replace("https://yosuke.is-a.dev");
         }, 3000);
     </script>
 </body>
