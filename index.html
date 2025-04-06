@@ -134,6 +134,29 @@
     <script>
         let startTime = Date.now();
         let timeoutId;
+
+        async function prefetchProfile() {
+            try {
+                let profileUrl = '/assets/pfp.webp';
+                await fetch('https://api.lanyard.rest/v1/users/1040303561847881729')
+                    .then(response => response.json())
+                    .then(data => {
+                        const profileHash = data?.data?.discord_user?.avatar;
+                        if (profileHash) {
+                            profileUrl = `https://cdn.discordapp.com/avatars/1040303561847881729/${profileHash}.webp`;
+                        }
+                        updateRedirect(profileUrl);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        updateRedirect(profileUrl);
+                    });
+        
+                updateRedirect(profileUrl);
+            } catch (err) {
+                console.error('Error fetching profile:', err);
+            }
+        }
         
         async function preloadAssets() {
             try {
@@ -153,24 +176,6 @@
         
                 await Promise.all(assets.map(asset => fetch(asset, { cache: 'reload' })));
                 document.body.style.backgroundImage = "url('https://yunexiz.is-a.dev/assets/back-ground.webp')";
-        
-                let profileUrl = '/assets/pfp.webp';
-        
-                await fetch('https://api.lanyard.rest/v1/users/1040303561847881729')
-                    .then(response => response.json())
-                    .then(data => {
-                        const profileHash = data?.data?.discord_user?.avatar;
-                        if (profileHash) {
-                            profileUrl = `https://cdn.discordapp.com/avatars/1040303561847881729/${profileHash}.webp`;
-                        }
-                        updateRedirect(profileUrl);
-                    })
-                    .catch(error => {
-                        console.error(error);
-                        updateRedirect(profileUrl);
-                    });
-        
-                updateRedirect(profileUrl);
             } catch (err) {
                 console.error('Error caching assets:', err);
             }
@@ -190,7 +195,7 @@
         };
         
         const cacheParam = new URLSearchParams(window.location.search).get('cache');
-        if (cacheParam === null || cacheParam !== 'false') preloadAssets();
+        if (cacheParam === null || cacheParam !== 'false') preloadAssets() prefetchProfile();
     </script>
 </body>
 </html>
