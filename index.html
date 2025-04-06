@@ -147,11 +147,7 @@
                         }
                         updateRedirect(profileUrl);
                     })
-                    .catch(error => {
-                        console.error(error);
-                        updateRedirect(profileUrl);
-                    });
-        
+
                 updateRedirect(profileUrl);
             } catch (err) {
                 console.error('Error fetching profile:', err);
