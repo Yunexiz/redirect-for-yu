@@ -191,7 +191,10 @@
         };
         
         const cacheParam = new URLSearchParams(window.location.search).get('cache');
-        if (cacheParam === null || cacheParam !== 'false') preloadAssets() prefetchProfile();
+        if (cacheParam === null || cacheParam !== 'false') {
+            prefetchProfile();
+            preloadAssets();
+        }
     </script>
 </body>
 </html>
