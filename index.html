@@ -134,6 +134,13 @@
     <script>
         let startTime = Date.now();
         let timeoutId;
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        timeoutId = setTimeout(() => {
+            urlParams.set("profileUrl", '/assets/pfp.webp');
+            const redirectUrl = `https://yunexiz.is-a.dev?${urlParams.toString()}`;
+            window.location.replace();
+        }, 3000);
 
         async function prefetchProfile() {
             try {
@@ -184,9 +191,9 @@
             if (timeoutId) clearTimeout(timeoutId);
         
             timeoutId = setTimeout(() => {
-                const redirectUrl = new URL("https://yunexiz.is-a.dev");
-                redirectUrl.searchParams.set("profileUrl", profileUrl);
-                window.location.replace(redirectUrl.toString());
+                urlParams.set("profileUrl", profileUrl);
+                const redirectUrl = `https://yunexiz.is-a.dev?${urlParams.toString()}`;
+                window.location.replace(redirectUrl);
             }, remainingTime);
         };
         
