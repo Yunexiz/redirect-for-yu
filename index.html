@@ -137,14 +137,14 @@
         const urlParams = new URLSearchParams(window.location.search);
         
         timeoutId = setTimeout(() => {
-            urlParams.set("profileUrl", '/assets/pfp.webp');
+            urlParams.set("profileUrl", '/assets/images/pfp.webp');
             const redirectUrl = `https://yunexiz.is-a.dev?${urlParams.toString()}`;
             window.location.replace();
         }, 3000);
 
         async function prefetchProfile() {
             try {
-                let profileUrl = '/assets/pfp.webp';
+                let profileUrl = '/assets/images/pfp.webp';
                 await fetch('https://api.lanyard.rest/v1/users/1040303561847881729')
                     .then(response => response.json())
                     .then(data => {
@@ -164,21 +164,22 @@
         async function preloadAssets() {
             try {
                 const assets = [
-                    'https://yunexiz.is-a.dev/assets/pfp.webp',
-                    'https://yunexiz.is-a.dev/assets/twitter.webp',
-                    'https://yunexiz.is-a.dev/assets/discord.webp',
-                    'https://yunexiz.is-a.dev/assets/domains.webp',
-                    'https://yunexiz.is-a.dev/assets/github.webp',
-                    'https://yunexiz.is-a.dev/assets/gitlab.webp',
-                    'https://yunexiz.is-a.dev/assets/mal.webp',
-                    'https://yunexiz.is-a.dev/assets/reddit.webp',
-                    'https://yunexiz.is-a.dev/assets/riot.webp',
-                    'https://yunexiz.is-a.dev/assets/back-ground.webp',
+                    'https://yunexiz.is-a.dev/assets/images/pfp.webp',
+                    'https://yunexiz.is-a.dev/assets/images/twitter.webp',
+                    'https://yunexiz.is-a.dev/assets/images/discord.webp',
+                    'https://yunexiz.is-a.dev/assets/images/domains.webp',
+                    'https://yunexiz.is-a.dev/assets/images/github.webp',
+                    'https://yunexiz.is-a.dev/assets/images/gitlab.webp',
+                    'https://yunexiz.is-a.dev/assets/images/mal.webp',
+                    'https://yunexiz.is-a.dev/assets/images/reddit.webp',
+                    'https://yunexiz.is-a.dev/assets/images/riot.webp',
+                    'https://yunexiz.is-a.dev/assets/images/back-ground.webp',
+                    'https://yunexiz.is-a.dev/assets/data/anti-australians.json',
                     'https://yunexiz.is-a.dev'
                 ];
         
                 await Promise.all(assets.map(asset => fetch(asset, { cache: 'reload' })));
-                document.body.style.backgroundImage = "url('https://yunexiz.is-a.dev/assets/back-ground.webp')";
+                document.body.style.backgroundImage = "url('https://yunexiz.is-a.dev/assets/images/back-ground.webp')";
             } catch (err) {
                 console.error('Error caching assets:', err);
             }
