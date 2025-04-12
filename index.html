@@ -103,19 +103,27 @@
           position: absolute;
           margin: 0 auto;
           top: 60%;
-          background: linear-gradient(90deg, grey, white, grey);
-          background-size: 200% auto;
+          background: linear-gradient(to right,
+            #777 30%,
+            #aaa 45%,
+            #eee 50%,
+            #aaa 55%,
+            #777 70%
+          );
+          background-size: 250% auto;
           background-clip: text;
+          -webkit-background-clip: text;
           color: transparent;
-          animation: textAnimation 1s linear infinite;
+          -webkit-text-fill-color: transparent;
+          animation: shine 3s linear infinite;
       }
 
-      @keyframes textAnimation {
+      @keyframes shine {
         0% {
-          background-position: 0% center;
+          background-position: 120% 0;
         }
         100% {
-          background-position: -200% center;
+          background-position: -20% 0;
         }
       }
     </style>
