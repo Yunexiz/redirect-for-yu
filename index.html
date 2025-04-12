@@ -1,208 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Preparing...</title>
     <style>
-        body {
-            background-size: cover;
-            background-color: rgb(24, 24, 24);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial;
-        }
+      body {
+          background-size: cover;
+          background-color: rgb(24, 24, 24);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          margin: 0;
+          font-family: Arial;
+      }
 
-        .loader {
-            position: relative;
-            width: 150px;
-            height: 150px;
-        }
+      .loader {
+          position: relative;
+          width: 150px;
+          height: 150px;
+      }
 
-        .center-circle {
-            position: absolute;
-            top: -10%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 30px;
-            height: 30px;
-            background-color: #002D5C;
-            background: radial-gradient(circle, darkblue, lightblue);
-            border-radius: 50%;
-            z-index: 2;
-            animation: supernova 3s ease-in-out forwards;
-        }
+      .center-circle {
+          position: absolute;
+          top: -10%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 30px;
+          height: 30px;
+          background-color: #002D5C;
+          background: radial-gradient(circle, darkblue, lightblue);
+          border-radius: 50%;
+          z-index: 2;
+          animation: supernova 3s ease-in-out forwards;
+      }
 
-        .orbit-circle {
-            position: absolute;
-            top: -10%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 24px;
-            height: 24px;
-            background-color: white;
-            border-radius: 50%;
-            z-index: 3;
-            animation: orbit 1s ease-in-out infinite;
-        }
+      .orbit-circle {
+          position: absolute;
+          top: -10%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 24px;
+          height: 24px;
+          background-color: white;
+          border-radius: 50%;
+          z-index: 3;
+          animation: orbit 1s ease-in-out infinite;
+      }
 
-        .orbit-circle.opposite {
-            z-index: 3;
-            animation: orbit-opposite 1s ease-in-out infinite;
-        }
+      .orbit-circle.opposite {
+          z-index: 3;
+          animation: orbit-opposite 1s ease-in-out infinite;
+      }
 
-        .orbit-path {
-            position: absolute;
-            top: -10%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120px;
-            height: 120px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-        }
+      .orbit-path {
+          position: absolute;
+          top: -10%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 120px;
+          height: 120px;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
+      }
 
-        @keyframes orbit {
-            0% {
-                transform: translate(-50%, -50%) rotate(-90deg) translateX(60px);
-            }
-            100% {
-                transform: translate(-50%, -50%) rotate(270deg) translateX(60px);
-            }
-        }
-
-        @keyframes orbit-opposite {
-            0% {
-                transform: translate(-50%, -50%) rotate(90deg) translateX(60px);
-            }
-            100% {
-                transform: translate(-50%, -50%) rotate(450deg) translateX(60px);
-            }
-        }
-
-        @keyframes supernova {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-            }
-            25% {
-                transform: translate(-50%, -50%) scale(3);
-            }
-            75% {
-                transform: translate(-50%, -50%) scale(0);
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(4);
-            }
-        }
-
-        h1 {
-            position: absolute;
-            margin: 0 auto;
-            top: 60%;
-            background: linear-gradient(90deg, grey, white, grey);
-            background-size: 200% auto;
-            background-clip: text;
-            color: transparent;
-            animation: textAnimation 1s linear infinite;
-        }
-
-        @keyframes textAnimation {
+      @keyframes orbit {
           0% {
-            background-position: 0% center;
+              transform: translate(-50%, -50%) rotate(-90deg) translateX(60px);
           }
           100% {
-            background-position: -200% center;
+              transform: translate(-50%, -50%) rotate(270deg) translateX(60px);
           }
+      }
+
+      @keyframes orbit-opposite {
+          0% {
+              transform: translate(-50%, -50%) rotate(90deg) translateX(60px);
+          }
+          100% {
+              transform: translate(-50%, -50%) rotate(450deg) translateX(60px);
+          }
+      }
+
+      @keyframes supernova {
+          0% {
+              transform: translate(-50%, -50%) scale(1);
+          }
+          25% {
+              transform: translate(-50%, -50%) scale(3);
+          }
+          75% {
+              transform: translate(-50%, -50%) scale(0);
+          }
+          100% {
+              transform: translate(-50%, -50%) scale(4);
+          }
+      }
+
+      h1 {
+          position: absolute;
+          margin: 0 auto;
+          top: 60%;
+          background: linear-gradient(90deg, grey, white, grey);
+          background-size: 200% auto;
+          background-clip: text;
+          color: transparent;
+          animation: textAnimation 1s linear infinite;
+      }
+
+      @keyframes textAnimation {
+        0% {
+          background-position: 0% center;
         }
+        100% {
+          background-position: -200% center;
+        }
+      }
     </style>
-</head>
-<body>
-    <div class="loader">
-        <div class="center-circle"></div>
-        <div class="orbit-circle"></div>
-        <div class="orbit-circle opposite"></div>
-        <div class="orbit-path"></div>
-    </div>
-    <h1>One moment...</h1>
+
     <noscript>
-        <meta http-equiv="refresh" content="3;url=https://yunexiz.is-a.dev">
+      <meta http-equiv="refresh" content="3;url=https://yunexiz.is-a.dev" />
     </noscript>
     <script>
-        let startTime = Date.now();
-        let timeoutId;
-        const urlParams = new URLSearchParams(window.location.search);
-        
+      let startTime = Date.now();
+      let timeoutId;
+      const urlParams = new URLSearchParams(window.location.search);
+
+      timeoutId = setTimeout(() => {
+        urlParams.set("profileUrl", "/assets/images/pfp.webp");
+        const redirectUrl = `https://yunexiz.is-a.dev?${urlParams.toString()}`;
+        window.location.replace();
+      }, 3000);
+
+      async function prefetchProfile() {
+        try {
+          let profileUrl = "/assets/images/pfp.webp";
+          await fetch("https://api.lanyard.rest/v1/users/1040303561847881729")
+            .then((response) => response.json())
+            .then((data) => {
+              const profileHash = data?.data?.discord_user?.avatar;
+              if (profileHash) {
+                profileUrl = `https://cdn.discordapp.com/avatars/1040303561847881729/${profileHash}.webp`;
+              }
+
+              fetch(profileUrl, { cache: "reload" });
+              updateRedirect(profileUrl);
+            });
+        } catch (err) {
+          console.error("Error fetching profile:", err);
+        }
+      }
+
+      async function preloadAssets() {
+        try {
+          const assets = [
+            "https://yunexiz.is-a.dev/assets/images/pfp.webp",
+            "https://yunexiz.is-a.dev/assets/images/twitter.webp",
+            "https://yunexiz.is-a.dev/assets/images/discord.webp",
+            "https://yunexiz.is-a.dev/assets/images/domains.webp",
+            "https://yunexiz.is-a.dev/assets/images/github.webp",
+            "https://yunexiz.is-a.dev/assets/images/gitlab.webp",
+            "https://yunexiz.is-a.dev/assets/images/mal.webp",
+            "https://yunexiz.is-a.dev/assets/images/reddit.webp",
+            "https://yunexiz.is-a.dev/assets/images/riot.webp",
+            "https://yunexiz.is-a.dev/assets/images/back-ground.webp",
+            "https://yunexiz.is-a.dev/assets/data/anti-australians.json",
+            "https://yunexiz.is-a.dev",
+          ];
+
+          await Promise.all(
+            assets.map((asset) => fetch(asset, { cache: "reload" }))
+          );
+          document.body.style.backgroundImage =
+            "url('https://yunexiz.is-a.dev/assets/images/back-ground.webp')";
+        } catch (err) {
+          console.error("Error caching assets:", err);
+        }
+      }
+
+      const updateRedirect = (profileUrl) => {
+        const elapsedTime = Date.now() - startTime;
+        const remainingTime = Math.max(0, 3000 - elapsedTime);
+
+        if (timeoutId) clearTimeout(timeoutId);
+
         timeoutId = setTimeout(() => {
-            urlParams.set("profileUrl", '/assets/images/pfp.webp');
-            const redirectUrl = `https://yunexiz.is-a.dev?${urlParams.toString()}`;
-            window.location.replace();
-        }, 3000);
+          urlParams.set("profileUrl", profileUrl);
+          const redirectUrl = `https://yunexiz.is-a.dev?${urlParams.toString()}`;
+          window.location.replace(redirectUrl);
+        }, remainingTime);
+      };
 
-        async function prefetchProfile() {
-            try {
-                let profileUrl = '/assets/images/pfp.webp';
-                await fetch('https://api.lanyard.rest/v1/users/1040303561847881729')
-                    .then(response => response.json())
-                    .then(data => {
-                        const profileHash = data?.data?.discord_user?.avatar;
-                        if (profileHash) {
-                            profileUrl = `https://cdn.discordapp.com/avatars/1040303561847881729/${profileHash}.webp`;
-                        }
-                        updateRedirect(profileUrl);
-                    })
-
-                updateRedirect(profileUrl);
-            } catch (err) {
-                console.error('Error fetching profile:', err);
-            }
-        }
-        
-        async function preloadAssets() {
-            try {
-                const assets = [
-                    'https://yunexiz.is-a.dev/assets/images/pfp.webp',
-                    'https://yunexiz.is-a.dev/assets/images/twitter.webp',
-                    'https://yunexiz.is-a.dev/assets/images/discord.webp',
-                    'https://yunexiz.is-a.dev/assets/images/domains.webp',
-                    'https://yunexiz.is-a.dev/assets/images/github.webp',
-                    'https://yunexiz.is-a.dev/assets/images/gitlab.webp',
-                    'https://yunexiz.is-a.dev/assets/images/mal.webp',
-                    'https://yunexiz.is-a.dev/assets/images/reddit.webp',
-                    'https://yunexiz.is-a.dev/assets/images/riot.webp',
-                    'https://yunexiz.is-a.dev/assets/images/back-ground.webp',
-                    'https://yunexiz.is-a.dev/assets/data/anti-australians.json',
-                    'https://yunexiz.is-a.dev'
-                ];
-        
-                await Promise.all(assets.map(asset => fetch(asset, { cache: 'reload' })));
-                document.body.style.backgroundImage = "url('https://yunexiz.is-a.dev/assets/images/back-ground.webp')";
-            } catch (err) {
-                console.error('Error caching assets:', err);
-            }
-        };
-        
-        const updateRedirect = (profileUrl) => {
-            const elapsedTime = Date.now() - startTime;
-            const remainingTime = Math.max(0, 3000 - elapsedTime);
-        
-            if (timeoutId) clearTimeout(timeoutId);
-        
-            timeoutId = setTimeout(() => {
-                urlParams.set("profileUrl", profileUrl);
-                const redirectUrl = `https://yunexiz.is-a.dev?${urlParams.toString()}`;
-                window.location.replace(redirectUrl);
-            }, remainingTime);
-        };
-        
-        const cacheParam = new URLSearchParams(window.location.search).get('cache');
-        if (cacheParam === null || cacheParam !== 'false') {
-            prefetchProfile();
-            preloadAssets();
-        }
+      const cacheParam = new URLSearchParams(window.location.search).get(
+        "cache"
+      );
+      if (cacheParam === null || cacheParam !== "false") {
+        prefetchProfile();
+        preloadAssets();
+      }
     </script>
-</body>
+  </head>
+  <body>
+    <div class="loader">
+      <div class="center-circle"></div>
+      <div class="orbit-circle"></div>
+      <div class="orbit-circle opposite"></div>
+      <div class="orbit-path"></div>
+    </div>
+    <h1>One moment...</h1>
+  </body>
 </html>
