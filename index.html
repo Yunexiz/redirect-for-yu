@@ -187,7 +187,7 @@
 
           if (manifest.images.includes("/assets/images/back-ground.webp")) {
             document.body.style.backgroundImage =
-              "url('/assets/images/back-ground.webp')";
+              `url('${baseURL}/assets/images/back-ground.webp')`;
           }
 
           console.log("Assets cached successfully:", assets);
