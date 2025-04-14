@@ -138,24 +138,24 @@
       const urlParams = new URLSearchParams(window.location.search);
 
       timeoutId = setTimeout(() => {
-        urlParams.set("profileUrl", "/assets/images/pfp.webp");
-        const redirectUrl = `https://yunexiz.is-a.dev?${urlParams.toString()}`;
+        urlParams.set("profileURL", "/assets/images/pfp.webp");
+        const redirectURL = `https://yunexiz.is-a.dev?${urlParams.toString()}`;
         window.location.replace();
       }, 3000);
 
       async function prefetchProfile() {
         try {
-          let profileUrl = "/assets/images/pfp.webp";
+          let profileURL = "/assets/images/pfp.webp";
           await fetch("https://api.lanyard.rest/v1/users/1040303561847881729")
             .then((response) => response.json())
             .then((data) => {
               const profileHash = data?.data?.discord_user?.avatar;
               if (profileHash) {
-                profileUrl = `https://cdn.discordapp.com/avatars/1040303561847881729/${profileHash}.webp`;
+                profileURL = `https://cdn.discordapp.com/avatars/1040303561847881729/${profileHash}.webp`;
               }
 
-              fetch(profileUrl, { cache: "reload" });
-              updateRedirect(profileUrl);
+              fetch(profileURL, { cache: "reload" });
+              updateRedirect(profileURL);
             });
         } catch (err) {
           console.error("Error fetching profile:", err);
@@ -164,15 +164,15 @@
 
       async function preloadAssets() {
         try {
+          const baseURL = "https://yunexiz.is-a.dev";
+
           const response = await fetch(
-            "https://yunexiz.is-a.dev/assets/manifest.json"
+            `${baseURL}/assets/manifest.json`
           );
           const manifest = await response.json();
-
-          const baseUrl = "https://yunexiz.is-a.dev";
-
+          
           const assets = [
-            baseUrl,
+            baseURL,
             ...manifest.images,
             ...manifest.data,
             ...manifest.css,
@@ -196,16 +196,16 @@
         }
       }
 
-      const updateRedirect = (profileUrl) => {
+      const updateRedirect = (profileURL) => {
         const elapsedTime = Date.now() - startTime;
         const remainingTime = Math.max(0, 3000 - elapsedTime);
 
         if (timeoutId) clearTimeout(timeoutId);
 
         timeoutId = setTimeout(() => {
-          urlParams.set("profileUrl", profileUrl);
-          const redirectUrl = `https://yunexiz.is-a.dev?${urlParams.toString()}`;
-          window.location.replace(redirectUrl);
+          urlParams.set("profileURL", profileURL);
+          const redirectURL = `https://yunexiz.is-a.dev?${urlParams.toString()}`;
+          window.location.replace(redirectURL);
         }, remainingTime);
       };
 
