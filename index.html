@@ -164,26 +164,33 @@
 
       async function preloadAssets() {
         try {
+          const response = await fetch(
+            "https://yunexiz.is-a.dev/assets/manifest.json"
+          );
+          const manifest = await response.json();
+
+          const baseUrl = "https://yunexiz.is-a.dev";
+
           const assets = [
-            "https://yunexiz.is-a.dev/assets/images/pfp.webp",
-            "https://yunexiz.is-a.dev/assets/images/twitter.webp",
-            "https://yunexiz.is-a.dev/assets/images/discord.webp",
-            "https://yunexiz.is-a.dev/assets/images/domains.webp",
-            "https://yunexiz.is-a.dev/assets/images/github.webp",
-            "https://yunexiz.is-a.dev/assets/images/gitlab.webp",
-            "https://yunexiz.is-a.dev/assets/images/mal.webp",
-            "https://yunexiz.is-a.dev/assets/images/reddit.webp",
-            "https://yunexiz.is-a.dev/assets/images/riot.webp",
-            "https://yunexiz.is-a.dev/assets/images/back-ground.webp",
-            "https://yunexiz.is-a.dev/assets/data/anti-australians.json",
-            "https://yunexiz.is-a.dev",
-          ];
+            baseUrl,
+            ...manifest.images,
+            ...manifest.data,
+            ...manifest.css,
+            ...manifest.js,
+          ].map((asset) =>
+            asset.startsWith("http") ? asset : `${baseURL}${asset}`
+          );
 
           await Promise.all(
             assets.map((asset) => fetch(asset, { cache: "reload" }))
           );
-          document.body.style.backgroundImage =
-            "url('https://yunexiz.is-a.dev/assets/images/back-ground.webp')";
+
+          if (manifest.images.includes("/assets/images/back-ground.webp")) {
+            document.body.style.backgroundImage =
+              "url('/assets/images/back-ground.webp')";
+          }
+
+          console.log("Assets cached successfully:", assets);
         } catch (err) {
           console.error("Error caching assets:", err);
         }
