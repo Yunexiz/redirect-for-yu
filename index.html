@@ -212,9 +212,7 @@
         }, remainingTime);
       };
 
-      const cacheParam = new UrlSearchParams(window.location.search).get(
-        "cache"
-      );
+      const cacheParam = urlParams.get("cache");
       if (cacheParam === null || cacheParam !== "false") {
         prefetchProfile();
         preloadAssets();
