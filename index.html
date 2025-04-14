@@ -120,7 +120,9 @@
       }
 
       @media (max-width: 768px) {
-        top: 60%;
+        span {
+          top: 60%;
+        }
       }
 
       @keyframes shine {
@@ -142,24 +144,24 @@
       const urlParams = new URLSearchParams(window.location.search);
 
       timeoutId = setTimeout(() => {
-        urlParams.set("profileURL", "/assets/images/pfp.webp");
-        const redirectURL = `https://yunexiz.is-a.dev?${urlParams.toString()}`;
+        urlParams.set("profileUrl", "/assets/images/pfp.webp");
+        const redirectUrl = `https://yunexiz.is-a.dev?${urlParams.toString()}`;
         window.location.replace();
       }, 3000);
 
       async function prefetchProfile() {
         try {
-          let profileURL = "/assets/images/pfp.webp";
+          let profileUrl = "/assets/images/pfp.webp";
           await fetch("https://api.lanyard.rest/v1/users/1040303561847881729")
             .then((response) => response.json())
             .then((data) => {
               const profileHash = data?.data?.discord_user?.avatar;
               if (profileHash) {
-                profileURL = `https://cdn.discordapp.com/avatars/1040303561847881729/${profileHash}.webp`;
+                profileUrl = `https://cdn.discordapp.com/avatars/1040303561847881729/${profileHash}.webp`;
               }
 
-              fetch(profileURL, { cache: "reload" });
-              updateRedirect(profileURL);
+              fetch(profileUrl, { cache: "reload" });
+              updateRedirect(profileUrl);
             });
         } catch (err) {
           console.error("Error fetching profile:", err);
@@ -168,21 +170,19 @@
 
       async function preloadAssets() {
         try {
-          const baseURL = "https://yunexiz.is-a.dev";
+          const baseUrl = "https://yunexiz.is-a.dev";
 
-          const response = await fetch(
-            `${baseURL}/assets/manifest.json`
-          );
+          const response = await fetch(`${baseUrl}/assets/manifest.json`);
           const manifest = await response.json();
-          
+
           const assets = [
-            baseURL,
+            baseUrl,
             ...manifest.images,
             ...manifest.data,
             ...manifest.css,
             ...manifest.js,
           ].map((asset) =>
-            asset.startsWith("http") ? asset : `${baseURL}${asset}`
+            asset.startsWith("http") ? asset : `${baseUrl}${asset}`
           );
 
           await Promise.all(
@@ -190,8 +190,7 @@
           );
 
           if (manifest.images.includes("/assets/images/back-ground.webp")) {
-            document.body.style.backgroundImage =
-              `url('${baseURL}/assets/images/back-ground.webp')`;
+            document.body.style.backgroundImage = `url('${baseUrl}/assets/images/back-ground.webp')`;
           }
 
           console.log("Assets cached successfully:", assets);
@@ -200,20 +199,20 @@
         }
       }
 
-      const updateRedirect = (profileURL) => {
+      const updateRedirect = (profileUrl) => {
         const elapsedTime = Date.now() - startTime;
         const remainingTime = Math.max(0, 3000 - elapsedTime);
 
         if (timeoutId) clearTimeout(timeoutId);
 
         timeoutId = setTimeout(() => {
-          urlParams.set("profileURL", profileURL);
-          const redirectURL = `https://yunexiz.is-a.dev?${urlParams.toString()}`;
-          window.location.replace(redirectURL);
+          urlParams.set("profileUrl", profileUrl);
+          const redirectUrl = `https://yunexiz.is-a.dev?${urlParams.toString()}`;
+          window.location.replace(redirectUrl);
         }, remainingTime);
       };
 
-      const cacheParam = new URLSearchParams(window.location.search).get(
+      const cacheParam = new UrlSearchParams(window.location.search).get(
         "cache"
       );
       if (cacheParam === null || cacheParam !== "false") {
