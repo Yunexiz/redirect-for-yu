@@ -163,17 +163,15 @@
       async function prefetchProfile() {
         try {
           let profileUrl = "/assets/images/pfp.webp";
-          await fetch("https://api.lanyard.rest/v1/users/1040303561847881729")
+          await fetch("https://personal-api-yunexiz.ladeapp.com/v0alpha/user/")
             .then((response) => response.json())
             .then((data) => {
-              const profileHash = data.data.discord_user.avatar;
-              if (profileHash) {
-                profileUrl = `https://cdn.discordapp.com/avatars/1040303561847881729/${profileHash}.webp`;
+              const profileUrl = data?.avatar_url;
+              if (profileUrl) {
+                fetch(profileUrl, { cache: "reload" });
+                document.querySelector(".center-circle").style.backgroundImage = `url("${profileUrl}")`;
+                updateRedirect(profileUrl);
               }
-
-              fetch(profileUrl, { cache: "reload" });
-              document.querySelector(".center-circle").style.backgroundImage = `url("${profileUrl}")`;
-              updateRedirect(profileUrl);
             });
         } catch (err) {
           console.error("Error fetching profile:", err);
