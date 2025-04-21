@@ -163,7 +163,7 @@
       async function prefetchProfile() {
         try {
           let profileUrl = "/assets/images/pfp.webp";
-          await fetch("https://personal-api-yunexiz.ladeapp.com/v0alpha/user/")
+          await fetch("https://personal-api-yunexiz.ladeapp.com/v0alpha/discord/user/")
             .then((response) => response.json())
             .then((data) => {
               const profileUrl = data?.avatar_url;
