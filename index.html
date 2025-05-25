@@ -15,20 +15,18 @@
         height: 100vh;
         margin: 0;
         font-family: Arial, sans-serif;
-        overflow: hidden; /* Prevents scrollbars during animation */
+        overflow: hidden;
       }
 
       .loader {
         position: relative;
         width: 150px;
         height: 150px;
-        /* Adjusted top margin for loader to be more centered with the text */
         margin-bottom: 100px;
       }
 
       .center-circle {
         position: absolute;
-        /* Centering the circle within the loader div */
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -40,7 +38,7 @@
           #3fbdd7,
           #50e3c2
         );
-        background-size: contain; /* Ensures the gradient fits */
+        background-size: contain;
         border-radius: 50%;
         z-index: 2;
         animation: supernova 3s ease-in-out forwards;
@@ -48,10 +46,8 @@
 
       .orbit-circle {
         position: absolute;
-        /* Centering the orbiting circles relative to the loader div */
         top: 50%;
         left: 50%;
-        /* transform: translate(-50%, -50%); // Initial transform handled by animation */
         width: 24px;
         height: 24px;
         background-color: white;
@@ -67,7 +63,6 @@
 
       .orbit-path {
         position: absolute;
-        /* Centering the orbit path */
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -120,8 +115,7 @@
         position: absolute;
         font-size: 30px;
         margin: 0 auto;
-        /* Positioned below the loader */
-        top: calc(50% + 100px); /* Adjust 100px based on loader size and desired spacing */
+        top: calc(50% + 100px);
         left: 50%;
         transform: translateX(-50%);
         background: linear-gradient(
@@ -138,17 +132,16 @@
         color: transparent;
         -webkit-text-fill-color: transparent;
         animation: shine 2s linear infinite;
-        white-space: nowrap; /* Prevents text from wrapping */
+        white-space: nowrap;
       }
 
       @media (max-width: 768px) {
         span {
-          /* Adjust positioning for smaller screens if needed */
           top: calc(50% + 80px);
           font-size: 24px;
         }
         .loader {
-            margin-bottom: 80px; /* Adjust margin for smaller screens */
+            margin-bottom: 80px;
         }
       }
 
