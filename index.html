@@ -32,12 +32,7 @@
         transform: translate(-50%, -50%);
         width: 30px;
         height: 30px;
-        background: radial-gradient(
-          circle,
-          #4a90e2,
-          #3fbdd7,
-          #50e3c2
-        );
+        background: radial-gradient(circle, #4a90e2, #3fbdd7, #50e3c2);
         background-size: contain;
         border-radius: 50%;
         z-index: 2;
@@ -74,25 +69,31 @@
 
       @keyframes orbit {
         0% {
-          transform: translate(-50%, -50%) rotate(-90deg) translateX(60px) scale(1);
+          transform: translate(-50%, -50%) rotate(-90deg) translateX(60px)
+            scale(1);
         }
         50% {
-          transform: translate(-50%, -50%) rotate(90deg) translateX(60px) scale(0);
+          transform: translate(-50%, -50%) rotate(90deg) translateX(60px)
+            scale(0);
         }
         100% {
-          transform: translate(-50%, -50%) rotate(270deg) translateX(60px) scale(1);
+          transform: translate(-50%, -50%) rotate(270deg) translateX(60px)
+            scale(1);
         }
       }
 
       @keyframes orbit-opposite {
         0% {
-          transform: translate(-50%, -50%) rotate(90deg) translateX(60px) scale(1);
+          transform: translate(-50%, -50%) rotate(90deg) translateX(60px)
+            scale(1);
         }
         50% {
-          transform: translate(-50%, -50%) rotate(270deg) translateX(60px) scale(0);
+          transform: translate(-50%, -50%) rotate(270deg) translateX(60px)
+            scale(0);
         }
         100% {
-          transform: translate(-50%, -50%) rotate(450deg) translateX(60px) scale(1);
+          transform: translate(-50%, -50%) rotate(450deg) translateX(60px)
+            scale(1);
         }
       }
 
@@ -111,13 +112,17 @@
         }
       }
 
+      .message {
+        position: relative;
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 30px;
+        padding: 10px;
+      }
+
       span {
-        position: absolute;
         font-size: 30px;
         margin: 0 auto;
-        top: calc(50% + 100px);
-        left: 50%;
-        transform: translateX(-50%);
         background: linear-gradient(
           to right,
           #fff 30%,
@@ -141,7 +146,7 @@
           font-size: 24px;
         }
         .loader {
-            margin-bottom: 80px;
+          margin-bottom: 80px;
         }
       }
 
@@ -335,6 +340,8 @@
       <div class="orbit-circle opposite"></div>
       <div class="orbit-path"></div>
     </div>
-    <span>One moment...</span>
+    <div class="message">
+      <span>One moment...</span>
+    </div>
   </body>
 </html>
