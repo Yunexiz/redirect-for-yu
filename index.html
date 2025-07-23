@@ -130,6 +130,7 @@
         background-color: rgba(0, 0, 0, 0.5);
         border-radius: 30px;
         padding: 10px;
+        transition: opacity 0.5s ease-in;
       }
 
       span {
@@ -150,7 +151,6 @@
         -webkit-text-fill-color: transparent;
         animation: shine 2s linear infinite;
         white-space: nowrap;
-        transition: opacity 0.5s ease-in;
       }
 
       @media (max-width: 768px) {
@@ -315,7 +315,7 @@
 
           background.style.backgroundImage = `url('${currentBaseUrl}/assets/images/back-ground.webp')`;
           background.style.opacity = 1;
-          document.querySelector("span").style.opacity = 0;
+          document.querySelector(".message").style.opacity = 0;
         }
         console.log(
           "Assets preloaded/cached successfully from:",
