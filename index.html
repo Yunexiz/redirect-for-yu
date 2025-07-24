@@ -9,6 +9,7 @@
     <style>
       :root {
         --background-color: rgba(0, 0, 0, 0.7);
+        --secondary-background-color: rgba(255, 255, 255, 0.7);
         --accent-list: #4a90e2, #3fbdd7, #50e3c2;
         --accent-start: #4a90e2;
         --accent-mid: #3fbdd7;
@@ -19,6 +20,7 @@
       @media (prefers-color-scheme: light) {
         :root {
           --background-color: rgba(255, 255, 255, 0.7);
+          --secondary-background-color: rgba(0, 0, 0, 0.7);
           --text-color: #000;
         }
       }
@@ -100,7 +102,8 @@
       .message {
         position: relative;
         z-index: 1;
-        background-color: var(--background-color);
+        background-color: var(--secondary-background-color);
+        backdrop-filter: blur(10px);
         border-radius: 30px;
         padding: 10px;
         transition: opacity 0.5s ease-in;
