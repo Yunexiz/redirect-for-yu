@@ -5,11 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Preparing...</title>
     <link rel="preconnect" href="https://api.yunexiz.is-a.dev" />
-    
+
     <style>
+      :root {
+        --background-color: rgba(0, 0, 0, 0.7);
+        --accent-list: #4a90e2, #3fbdd7, #50e3c2;
+        --accent-start: #4a90e2;
+        --accent-mid: #3fbdd7;
+        --accent-end: #50e3c2;
+        --text-color: #fff;
+      }
+
+      @media (prefers-color-scheme: light) {
+        :root {
+          --background-color: rgba(255, 255, 255, 0.7);
+          --text-color: #000;
+        }
+      }
+
       body {
         background-size: cover;
-        background-color: rgb(24, 24, 24);
+        background-color: var(--background-color);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -46,7 +62,7 @@
         transform: translate(-50%, -50%);
         width: 30px;
         height: 30px;
-        background: radial-gradient(circle, #4a90e2, #3fbdd7, #50e3c2);
+        background: radial-gradient(circle, var(--accent-list));
         background-size: contain;
         border-radius: 50%;
         z-index: 2;
@@ -59,7 +75,7 @@
         left: 50%;
         width: 24px;
         height: 24px;
-        background-color: white;
+        background-color: var(--accent-mid);
         border-radius: 50%;
         z-index: 3;
         animation: orbit 2s ease-in-out infinite;
@@ -77,8 +93,37 @@
         transform: translate(-50%, -50%);
         width: 120px;
         height: 120px;
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        border: 2px solid var(--text-color);
         border-radius: 50%;
+      }
+
+      .message {
+        position: relative;
+        z-index: 1;
+        background-color: var(--background-color);
+        border-radius: 30px;
+        padding: 10px;
+        transition: opacity 0.5s ease-in;
+      }
+
+      span {
+        font-size: 30px;
+        margin: 0 auto;
+        background: linear-gradient(
+          to right,
+          var(--text-color) 30%,
+          var(--accent-start) 45%,
+          var(--accent-mid) 50%,
+          var(--accent-end) 55%,
+          var(--text-color) 75%
+        );
+        background-size: 250% auto;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        animation: shine 2s linear infinite;
+        white-space: nowrap;
       }
 
       @keyframes orbit {
@@ -123,45 +168,6 @@
         }
         100% {
           transform: translate(-50%, -50%) scale(4);
-        }
-      }
-
-      .message {
-        position: relative;
-        z-index: 1;
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 30px;
-        padding: 10px;
-        transition: opacity 0.5s ease-in;
-      }
-
-      span {
-        font-size: 30px;
-        margin: 0 auto;
-        background: linear-gradient(
-          to right,
-          #fff 30%,
-          #4a90e2 45%,
-          #3fbdd7 50%,
-          #50e3c2 55%,
-          #fff 75%
-        );
-        background-size: 250% auto;
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-        -webkit-text-fill-color: transparent;
-        animation: shine 2s linear infinite;
-        white-space: nowrap;
-      }
-
-      @media (max-width: 768px) {
-        span {
-          top: calc(50% + 80px);
-          font-size: 24px;
-        }
-        .loader {
-          margin-bottom: 80px;
         }
       }
 
