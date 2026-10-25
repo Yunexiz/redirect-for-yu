@@ -187,7 +187,9 @@
 		  .then((avatarUrl) => {
   		    if (avatarUrl) {
               fetch(avatarUrl, { cache: "reload" }).then(() => console.log("Fetched Discord avatar"));
-              redirectUrl.search.set("avatarUrl", avatarUrl);
+              const newParams = new URLSearchParams(redirectUrl.searchParams);
+              newParams.set("avatarUrl", avatarUrl);
+              redirectUrl.search = newParams;
               taskDone();
             } else {
               console.error("Discord avatar returned empty");
