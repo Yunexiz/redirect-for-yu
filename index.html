@@ -162,7 +162,7 @@
 
 	  try {
 		if (Array.isArray(tree)) walkArray(tree, "").then(() => taskDone());
-	    else if (typeof item == "object") walkArray(tree.files, `${tree.dir}/`).then(() => taskDone());
+	    else if (typeof tree == "object") walkArray(tree.files, `${tree.dir}/`).then(() => taskDone());
 	    else {
 		  console.error("Invalid tree");
 		  taskDone();
