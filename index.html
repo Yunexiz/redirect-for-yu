@@ -128,14 +128,7 @@
 		window.location.href = redirectUrl;
 	  }
 
-	  const tasks = 2;
-	  let done = 0;
-
-	  function taskDone() {
-		done++;
-
-		if (tasks === done) redirectNow();
-	  }
+	  const tasks = [];
 
 	  let tree = null;
 
@@ -160,17 +153,9 @@
 		}))
 	  }
 
-	  try {
-		if (Array.isArray(tree)) walkArray(tree, "").then(() => taskDone());
-	    else if (typeof tree == "object") walkArray(tree.files, `${tree.dir}/`).then(() => taskDone());
-	    else {
-		  console.error("Invalid tree");
-		  taskDone();
-	    }
-	  } catch (error) {
-		console.error("Failed to start walk:", error);
-		taskDone();
-	  }
+  	  if (Array.isArray(tree)) tasks.push(walkArray(tree, ""));
+      else if (typeof tree === "object") tasks.push(walkArray(tree.files, `${tree.dir}/`));
+      else console.error("Invalid tree");
 
 	  const discordUser = urlParams.get("discordUser") ?? urlParams.get("discord_user") ?? "1040303561847881729";
 
@@ -183,35 +168,35 @@
 	  }
 
 	  if (discordUser) {
-		fetchDiscordAvatar(discordUser)
-		  .then((avatarUrl) => {
-  		    if (avatarUrl) {
-              redirectUrl.searchParams.set("avatarUrl", avatarUrl);
+	    tasks.push(new Promise((res, rej) => {
+		  const avatarUrl = await fetchDiscordAvatar(discordUser);
 
-              fetch(avatarUrl, { cache: "reload" })
-                .then(() => {
-                  console.log("Fetched Discord avatar");
-                  taskDone();
-                })
-                .catch((error) => {
-                  console.error("Failed to fetch Discord avatar:", error);
-                  taskDone();
-                })
-            } else {
-              console.error("Discord avatar returned empty");
-              taskDone();
-            }
-  		  })
-		  .catch((error) => {
-			console.error("Failed to get Discord avatar from API:", error);
-			taskDone();
-		  })
+		  if (avatarUrl) {
+			redirectUrl.searchParams.set("avatarUrl", avatarUrl);
+
+			try {
+			  await fetch(avatarUrl, { cache: "reload" });
+			  console.log("Fetched Discord avatar");
+			  res();
+			} catch (error) {
+			  rej("Failed to fetch Discord avatar:", error);
+			}
+		  } else {
+			rej("Discord avatar returned empty");
+		  }
+		});
 	  } else {
-		console.log("Discord avatar prefetch disabled")
-		taskDone();
+		console.log("Discord avatar prefetch disabled");
 	  }
 
 	  setTimeout(redirectNow, 3000)
+	  await Promise.all(tasks)
+		.then(() => {
+		  redirectNow();
+		})
+		.catch((error) => {
+		  console.error("Failed to execute task:", error);
+		})
 	</script>
 </head>
 <body>
