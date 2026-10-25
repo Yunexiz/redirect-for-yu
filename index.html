@@ -159,12 +159,18 @@
 		}))
 	  }
 
-	  if (Array.isArray(tree)) walkArray(tree, "").then(() => taskDone());
-	  else if (typeof item == "object") walkArray(tree.files, `${tree.dir}/`).then(() => taskDone());
-	  else {
-		console.error("Invalid tree");
+	  try {
+		if (Array.isArray(tree)) walkArray(tree, "").then(() => taskDone());
+	    else if (typeof item == "object") walkArray(tree.files, `${tree.dir}/`).then(() => taskDone());
+	    else {
+		  console.error("Invalid tree");
+		  taskDone();
+	    }
+	  } catch (error) {
+		console.error("Failed to start walk:", error);
 		taskDone();
 	  }
+
 
 	  const discordUser = urlParams.get("discordUser") ?? urlParams.get("discord_user");
 
