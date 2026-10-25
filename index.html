@@ -186,18 +186,26 @@
 		fetchDiscordAvatar(discordUser)
 		  .then((avatarUrl) => {
   		    if (avatarUrl) {
-              fetch(avatarUrl, { cache: "reload" }).then(() => console.log("Fetched Discord avatar"));
               const newParams = new URLSearchParams(redirectUrl.searchParams);
               newParams.set("avatarUrl", avatarUrl);
               redirectUrl.search = newParams;
-              taskDone();
+
+              fetch(avatarUrl, { cache: "reload" })
+                .then(() => {
+                  console.log("Fetched Discord avatar");
+                  taskDone();
+                })
+                .catch((error) => {
+                  console.error("Failed to fetch Discord avatar:", error);
+                  taskDone();
+                })
             } else {
               console.error("Discord avatar returned empty");
               taskDone();
             }
   		  })
 		  .catch((error) => {
-			console.error("Error during Discord avatar fetch:", error);
+			console.error("Failed to get Discord avatar from API:", error);
 			taskDone();
 		  })
 	  } else {
