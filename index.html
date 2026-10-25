@@ -137,13 +137,8 @@
 		if (tasks === done) redirectNow();
 	  }
 
-	  try {
-		const manifest = await fetch(new URL("assets.json", assetsUrl));
-	    const tree = await manifest.json();
-	  } catch (error) {
-		console.error("Failed to fetch manifest:", error);
-	  }
-
+	  const manifest = await fetch(new URL("assets.json", assetsUrl)).catch((error) => console.error("Failed to fetch manifest:", error));
+	  const tree = await manifest.json().catch((error) => console.error("Failed to parse manifest:", error));
 
 	  async function walkArray(array, path) {
 		if (!array) return;
@@ -171,11 +166,10 @@
 		taskDone();
 	  }
 
-
-	  const discordUser = urlParams.get("discordUser") ?? urlParams.get("discord_user");
+	  const discordUser = urlParams.get("discordUser") ?? urlParams.get("discord_user") ?? "1040303561847881729";
 
 	  async function fetchDiscordAvatar(discordUser) {
-		const response = await fetch(`https://api.yunexiz.is-a.dev/v2/discord/user/${discordUser ?? ""}`);
+		const response = await fetch(`https://api.yunexiz.is-a.dev/v2/discord/user/${discordUser}`);
 
 		const json = await response.json();
 
