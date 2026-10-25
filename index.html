@@ -112,7 +112,7 @@
 	  const redirectUrl = new URL(
 		urlParams.get("redirectUrl") || urlParams.get("redirect_url") || "https://yunexiz.is-a.dev/"
 	  );
-	  redirectUrl.search = new URLSearchParams([...urlParams].filter(([key, value]) => key === "redirectUrl" || key === "redirect_url" || key === "assetsBase" || key === "assets_base"));
+	  redirectUrl.search = new URLSearchParams([...urlParams].filter(([key, value]) => key === "redirectUrl" || key === "redirect_url" || key === "assetsBase" || key === "assets_base")).toString();
 
 	  const assetsBase = urlParams.get("assetsBase") || urlParams.get("assets_base") || "origin"
 	  const assetsUrl = new URL(
@@ -186,9 +186,7 @@
 		fetchDiscordAvatar(discordUser)
 		  .then((avatarUrl) => {
   		    if (avatarUrl) {
-              const newParams = new URLSearchParams(redirectUrl.searchParams);
-              newParams.set("avatarUrl", avatarUrl);
-              redirectUrl.search = newParams;
+              redirectUrl.searchParams.set("avatarUrl", avatarUrl);
 
               fetch(avatarUrl, { cache: "reload" })
                 .then(() => {
