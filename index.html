@@ -168,23 +168,21 @@
 	  }
 
 	  if (discordUser) {
-	    tasks.push(new Promise((res, rej) => {
-		  const avatarUrl = await fetchDiscordAvatar(discordUser);
+        tasks.push(
+          (async () => {
+            try {
+              const avatarUrl = await fetchDiscordAvatar(discordUser);
 
-		  if (avatarUrl) {
-			redirectUrl.searchParams.set("avatarUrl", avatarUrl);
-
-			try {
-			  await fetch(avatarUrl, { cache: "reload" });
-			  console.log("Fetched Discord avatar");
-			  res();
-			} catch (error) {
-			  rej("Failed to fetch Discord avatar:", error);
-			}
-		  } else {
-			rej("Discord avatar returned empty");
-		  }
-		});
+              if (avatarUrl) {
+                redirectUrl.searchParams.set("avatarUrl", avatarUrl);
+                await fetch(avatarUrl, { cache: "reload" });
+                console.log("Fetched Discord avatar");
+              }
+            } catch (error) {
+              console.error("Failed to fetch Discord avatar:", error);
+            }
+          })();
+        );
 	  } else {
 		console.log("Discord avatar prefetch disabled");
 	  }
