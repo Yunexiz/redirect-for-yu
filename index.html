@@ -137,8 +137,14 @@
 		if (tasks === done) redirectNow();
 	  }
 
-	  const manifest = await fetch(new URL("assets.json", assetsUrl)).catch((error) => console.error("Failed to fetch manifest:", error));
-	  const tree = await manifest.json().catch((error) => console.error("Failed to parse manifest:", error));
+	  let tree = null;
+
+	  try {
+		const manifest = await fetch(new URL("assets.json", assetsUrl));
+	    tree = await manifest.json();
+	  } catch (error) {
+		console.error("Failed to fetch manifest:", error);
+	  }
 
 	  async function walkArray(array, path) {
 		if (!array) return;
