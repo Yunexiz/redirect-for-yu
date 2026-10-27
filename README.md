@@ -1,0 +1,2 @@
+A simple, but effective, redirect that takes in a redirectUrl, a discordUser, and a base path to pull in assets from the upstream page. It dynamically caches all found files, as if it were a filesystem, then redirects the user to the domain.
+The tool was archived for being practically useless, and many instances did nothing due to being blocked by CORS/cache policies. At least it looked, somewhat, nice.
