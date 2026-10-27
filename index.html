@@ -112,7 +112,7 @@
 	  const redirectUrl = new URL(
 		urlParams.get("redirectUrl") || urlParams.get("redirect_url") || "https://yunexiz.is-a.dev/"
 	  );
-	  const excludedPassthroughParams = Set(["redirectUrl", "redirect_url", "assetsBase", "assets_base", "discordUser", "discord_user"]);
+	  const excludedPassthroughParams = new Set(["redirectUrl", "redirect_url", "assetsBase", "assets_base", "discordUser", "discord_user"]);
 	  redirectUrl.search = new URLSearchParams([...urlParams].filter(([key]) => !excludedPassthroughParams.has(key)).toString();
 
 	  const assetsBase = urlParams.get("assetsBase") || urlParams.get("assets_base") || "origin"
